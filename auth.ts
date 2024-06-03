@@ -29,6 +29,8 @@ export const { auth, signIn, signOut } = NextAuth({
           const { email, password } = parsedCredentials.data;
           const user = await getUser(email);
           if (!user) return null;
+          console.log('xxxxxx   user.password: ', user.password);
+          console.log('xxxxxx  password: ', password);
           const passwordsMatch = await bcrypt.compare(password, user.password);
           if (passwordsMatch) return user;
         }
@@ -38,3 +40,4 @@ export const { auth, signIn, signOut } = NextAuth({
     }),
   ],
 });
+console.log('01236 auth: ', auth);
